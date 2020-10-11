@@ -1133,12 +1133,6 @@ int main(int argc, char *argv[])
 		cleanup(EXIT_FAILURE);
 	}
 
-	if(config->sysroot && (chroot(config->sysroot) != 0 || chdir("/") != 0)) {
-		pm_printf(ALPM_LOG_ERROR,
-				_("chroot to '%s' failed: (%s)\n"), config->sysroot, strerror(errno));
-		cleanup(EXIT_FAILURE);
-	}
-
 	/* we support reading targets from stdin if a cmdline parameter is '-' */
 	if(alpm_list_find_str(pm_targets, "-")) {
 		if(!isatty(fileno(stdin))) {
